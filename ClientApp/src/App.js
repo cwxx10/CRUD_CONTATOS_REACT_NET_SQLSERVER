@@ -31,6 +31,20 @@ function App() {
     };
 
 
+    const handleDelete = async (id) => {
+        const response = await fetch(`api/contato/Delete/${id}`, {
+            method: 'DELETE',
+            headers: {
+                'Content-Type': 'application/json;charset=utf-8'
+            }
+        });
+        if (response.ok) {
+            alert("Contato excluido!");
+            Get();
+        }
+    };
+
+
 
 
     return (
@@ -39,7 +53,7 @@ function App() {
             <hr></hr>
             {/*<ModalContato />*/}
             <hr></hr>
-            <TabelaContato data={contatos} />
+            <TabelaContato data={contatos} handleDelete={handleDelete} />
         </div>
 
 

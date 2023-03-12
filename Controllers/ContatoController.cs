@@ -62,8 +62,7 @@ namespace CRUD_CONTATOS_REACT_NET.Controllers
         [Route("Delete/{id:int}")]
         public async Task<IActionResult> Delete(int id)
         {
-
-            Contato contato =  _db.Contatos.Find(id);
+            Contato contato = await _db.Contatos.FindAsync(id);
 
             if (contato == null)
             {
@@ -75,6 +74,7 @@ namespace CRUD_CONTATOS_REACT_NET.Controllers
 
             return Ok();
         }
+
 
 
     }

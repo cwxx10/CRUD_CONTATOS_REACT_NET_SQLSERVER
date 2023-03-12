@@ -1,8 +1,4 @@
-﻿
-import React, { useEffect, useState } from 'react';
-
-const TabelaContato = ({ data }) => {
-
+﻿const TabelaContato = (props) => {
     return (
         <table className="table">
             <thead>
@@ -14,15 +10,14 @@ const TabelaContato = ({ data }) => {
                 </tr>
             </thead>
             <tbody>
-                {data.map((item) => (
-                    <tr>
-                        <td>{item.idContato}</td>
+                {props.data.map((item) => (
+                    <tr key={item.idContato}>
                         <td>{item.nome}</td>
                         <td>{item.email}</td>
                         <td>{item.phone}</td>
                         <td>
                             <button color="primary" size="sm" className="me-2">Editar</button>
-                            <button id="exc" color="danger" size="sm">Excluir</button>
+                            <button id="exc" color="danger" size="sm" onClick={() => props.handleDelete(item.idContato)}>Excluir</button>
                         </td>
                     </tr>
                 ))}
