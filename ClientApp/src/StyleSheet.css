@@ -1,0 +1,85 @@
+﻿body {
+    background-image: linear-gradient(to right, #bdb3e6, #26a0da);
+  /*  background-color: #222;*/
+    
+}
+
+td {
+    color: black;
+    font-weight: 500;
+}
+
+#colorwhite {
+    color: black;
+    font-weight: 500;
+    text-align: justify;
+}
+
+.container {
+    display: flex;
+    justify-content: center;
+}
+
+
+.bn632-hover {
+    width: 160px;
+    font-size: 16px;
+    font-weight: 600;
+    color: #fff;
+    cursor: pointer;
+    margin: 20px;
+    height: 55px;
+    text-align: center;
+    border: none;
+    background-size: 300% 100%;
+    border-radius: 50px;
+    moz-transition: all .4s ease-in-out;
+    -o-transition: all .4s ease-in-out;
+    -webkit-transition: all .4s ease-in-out;
+    transition: all .4s ease-in-out;
+}
+
+    .bn632-hover.bn26 {
+        border: 1px solid #fff !important;
+        border-radius: 50px; /* Torna as bordas mais arredondadas */
+        background-color: transparent; /* Remove a cor de fundo para que o gradiente seja visível na borda */
+        background-image: linear-gradient( to right, #25aae1, #4481eb, #04befe, #3f86ed );
+        box-shadow: 0 4px 15px 0 rgba(65, 132, 234, 0.75);
+        transition: all 0.3s ease-in-out; /* Adiciona uma transição suave ao passar o mouse */
+    }
+
+
+.bn632-hover {
+    
+    width: 100vh;
+    font-size: 16px;
+    font-weight: 600;
+    color: #fff;
+    cursor: pointer;
+    margin: 20px;
+    height: 55px;
+    text-align: center;
+    border: none;
+    background-size: 300% 100%;
+    border-radius: 50px;
+    moz-transition: all .4s ease-in-out;
+    -o-transition: all .4s ease-in-out;
+    -webkit-transition: all .4s ease-in-out;
+    transition: all .4s ease-in-out;
+}
+
+    .bn632-hover:hover {
+        background-position: 100% 0;
+        moz-transition: all .4s ease-in-out;
+        -o-transition: all .4s ease-in-out;
+        -webkit-transition: all .4s ease-in-out;
+        transition: all .4s ease-in-out;
+
+        transform: scale(1.05); /* Aumenta um pouco o tamanho do botão ao passar o mouse */
+        box-shadow: 0 8px 20px 0 rgba(65, 132, 234, 0.75); /* Adiciona um sombreamento mais intenso */
+    }
+
+.bn632-hover:focus {
+        outline: none;
+    }
+
