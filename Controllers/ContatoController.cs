@@ -8,6 +8,7 @@ namespace CRUD_CONTATOS_REACT_NET.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
+    [Produces("application/json")]
     public class ContatoController : ControllerBase
     {
         private readonly CrudContatosReactNetContext _db;
@@ -32,15 +33,17 @@ namespace CRUD_CONTATOS_REACT_NET.Controllers
 
 
 
-        //[HttpPost]
-        //[Route("Guardar")]
-        //public async Task<IActionResult> Guardar([FromBody] Contato request)
-        //{
-        //     await _db.Contatos.AddAsync(request);
-        //     await _db.SaveChangesAsync();
-        //    return Ok();
-
-        //}
+        [HttpPost]
+        [Route("AddContato")]
+        public async Task<IActionResult> AddContato([FromBody] Contato request)
+        {
+            await _db.Contatos.AddAsync(request);
+            await _db.SaveChangesAsync();
+            return new JsonResult(request)
+            {
+                StatusCode = 201,
+            };
+        }
 
 
         [HttpPut]

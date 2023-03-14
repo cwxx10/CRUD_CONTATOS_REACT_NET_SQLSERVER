@@ -1,22 +1,12 @@
 import React, { useEffect, useState } from 'react';
 import TabelaContato from './component/TabelaContato';
 import Cabecalho from './component/Cabecalho';
-import ModalContato from './component/ModalContato';
 import './StyleSheet.css';
 
 function App() {
-
-    // create state
     const [contatos, setContatos] = useState([]);
-    const [mostrarModal, setMostrarModal] = useState(false);
 
-    //criar useeffect
     useEffect(() => {
-        Get();
-    }, [])
-
-    // APIS 
-    const Get = () => {
         fetch('api/contato/GetContatos', {
             headers: {
                 'Accept': 'application/json'
@@ -26,7 +16,7 @@ function App() {
             .then((data) => {
                 setContatos(data);
             });
-    };
+    }, []);
 
     const handleDelete = async (id) => {
         const response = await fetch(`api/contato/Delete/${id}`, {
@@ -37,16 +27,16 @@ function App() {
         });
         if (response.ok) {
             alert("Contato excluido!");
-            Get();
+            fetch('api/contato/GetContatos', {
+                headers: {
+                    'Accept': 'application/json'
+                }
+            })
+                .then((response) => response.json())
+                .then((data) => {
+                    setContatos(data);
+                });
         }
-    };
-
-    const handleAdd = () => {
-        setMostrarModal(true);
-    };
-
-    const handleClose = () => {
-        setMostrarModal(false);
     };
 
     const handleGuardarContato = (contato) => {
@@ -59,23 +49,25 @@ function App() {
         })
             .then((response) => response.json())
             .then((data) => {
-                setContatos([...contatos, data]);
+                fetch('api/contato/GetContatos', {
+                    headers: {
+                        'Accept': 'application/json'
+                    }
+                })
+                    .then((response) => response.json())
+                    .then((data) => {
+                        setContatos(data);
+                    });
             });
-
-        handleClose();
     };
 
     return (
         <div>
-            <Cabecalho handleAdd={handleAdd} />
-            <hr></hr>
-            {mostrarModal && <ModalContato handleClose={handleClose} handleGuardarContato={handleGuardarContato} />}
+            <Cabecalho handleGuardarContato={handleGuardarContato} />
             <hr></hr>
             <TabelaContato data={contatos} handleDelete={handleDelete} />
         </div>
     );
 }
 
-
 export default App;
-
