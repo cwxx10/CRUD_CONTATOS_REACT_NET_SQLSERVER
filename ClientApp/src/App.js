@@ -6,17 +6,16 @@ import './StyleSheet.css';
 
 function App() {
 
-    //criar state
+    // create state
     const [contatos, setContatos] = useState([]);
+    const [mostrarModal, setMostrarModal] = useState(false);
 
     //criar useeffect
     useEffect(() => {
         Get();
     }, [])
 
-
-
-    //APIS 
+    // APIS 
     const Get = () => {
         fetch('api/contato/GetContatos', {
             headers: {
@@ -26,10 +25,8 @@ function App() {
             .then((response) => response.json())
             .then((data) => {
                 setContatos(data);
-               /* console.log(data);*/
             });
     };
-
 
     const handleDelete = async (id) => {
         const response = await fetch(`api/contato/Delete/${id}`, {
@@ -44,38 +41,41 @@ function App() {
         }
     };
 
+    const handleAdd = () => {
+        setMostrarModal(true);
+    };
 
+    const handleClose = () => {
+        setMostrarModal(false);
+    };
 
+    const handleGuardarContato = (contato) => {
+        fetch('api/contato/AddContato', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json;charset=utf-8'
+            },
+            body: JSON.stringify(contato)
+        })
+            .then((response) => response.json())
+            .then((data) => {
+                setContatos([...contatos, data]);
+            });
+
+        handleClose();
+    };
 
     return (
         <div>
-            <Cabecalho />
+            <Cabecalho handleAdd={handleAdd} />
             <hr></hr>
-            {/*<ModalContato />*/}
+            {mostrarModal && <ModalContato handleClose={handleClose} handleGuardarContato={handleGuardarContato} />}
             <hr></hr>
             <TabelaContato data={contatos} handleDelete={handleDelete} />
         </div>
-
-
-       
     );
 }
 
+
 export default App;
-
-const guardarContacto = async (contato) => {
-    const response = await fetch("api/contato/Guardar", {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json;charset=utf-8'
-        },
-        body: JSON.stringify(contato)
-    });
-    if (response.ok) {
-        //setMostrarModal(!mostrarModal);
-        //Get();
-    }
-}
-
-export { guardarContacto };
 
