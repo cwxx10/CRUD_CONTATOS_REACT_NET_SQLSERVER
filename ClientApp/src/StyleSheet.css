@@ -249,3 +249,29 @@ div.omrs-input-group {
 .omrs-input-filled > input {
     background: var(--omrs-color-bg-low-contrast);
 }
+
+
+
+
+
+
+.input-container {
+    position: relative;
+}
+
+.input-label {
+    position: absolute;
+    top: 0;
+    left: 0;
+    margin: 0;
+    padding: 0.25rem 0.5rem;
+    background-color: transparent;
+    color: #495057;
+    transition: all 0.2s;
+}
+
+.form-control:focus + .input-label,
+.form-control:not(:placeholder-shown) + .input-label {
+    padding: 0 0.5rem;
+    font-size: 0.75rem;
+}
