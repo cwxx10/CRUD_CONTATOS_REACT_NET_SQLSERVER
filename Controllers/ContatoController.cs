@@ -31,8 +31,6 @@ namespace CRUD_CONTATOS_REACT_NET.Controllers
         }
 
 
-
-
         [HttpPost]
         [Route("AddContato")]
         public async Task<IActionResult> AddContato([FromBody] Contato request)
@@ -45,21 +43,6 @@ namespace CRUD_CONTATOS_REACT_NET.Controllers
             };
         }
 
-
-        [HttpPut]
-        [Route("Editar")]
-        public async Task<IActionResult> Editar([FromBody] Contato request)
-        {
-            if (request == null)
-            {
-                return BadRequest();
-            }
-
-             _db.Contatos.Update(request);
-            await _db.SaveChangesAsync();
-
-            return Ok();
-        }
 
         [HttpDelete]
         [Route("Delete/{id:int}")]
@@ -77,6 +60,24 @@ namespace CRUD_CONTATOS_REACT_NET.Controllers
 
             return Ok();
         }
+
+
+        //[HttpPut]
+        //[Route("Editar/{id:int}")]
+        //public async Task<IActionResult> Editar(int id)
+        //{
+        //    Contato contato = await _db.Contatos.FindAsync(id);
+            
+        //    if (contato == null)
+        //    {
+        //        return NotFound();
+        //    }
+
+        //    _db.Contatos.Update(contato);
+        //    await _db.SaveChangesAsync();
+
+        //    return Ok();
+        //}
 
 
 
